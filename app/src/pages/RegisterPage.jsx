@@ -1,12 +1,11 @@
 import PageSchema from '../components/PageSchema'
 
-function MainPage() {
+function RegisterPage() {
     return (
         <PageSchema>
-            <h1>Main Page</h1>
-                <p>Test</p>
+            <h1>Register Page</h1>
         </PageSchema>
     )
 }
 
-export default MainPage
+export default RegisterPage
