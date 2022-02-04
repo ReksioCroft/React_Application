@@ -9,6 +9,9 @@ package-lock.json
 # testing
 /coverage
 
+#firebase
+/src/firebase/firebase_config.jsx
+
 # production
 /build
 
