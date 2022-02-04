@@ -6,9 +6,13 @@ import LoginPage from '../pages/LoginPage'
 import RegisterPage from '../pages/RegisterPage'
 import NotFoundPage from '../pages/NotFoundPage'
 import ProfilePage from '../pages/ProfilePage'
+import { useAuthentication } from '../firebase/AuthenticationContext'
 
 
 function AppRoutes(){
+
+    const { NeedAuthentication } = useAuthentication()
+
     return (
         <>
             <BrowserRouter>
@@ -17,12 +21,16 @@ function AppRoutes(){
                     <Route path="/home" element={<MainPage/>}/>
                     <Route path="/login" element={<LoginPage/>}/>
                     <Route path="/register" element={<RegisterPage/>}/>
-                    <Route path="/profile" element={<ProfilePage/>}/>
+                    <Route element={<NeedAuthentication/>}>
+                        <Route path="/profile" element={<ProfilePage/>}/>
+                    </Route>
                     <Route path="*" element={<NotFoundPage/>}/>
                 </Routes>
             </BrowserRouter>
         </>
     )
 }
+
+
 
 export default AppRoutes
