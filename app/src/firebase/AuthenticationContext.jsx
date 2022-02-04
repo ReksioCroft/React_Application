@@ -1,6 +1,6 @@
-import { createContext, useContext, useState } from 'react'
+import { createContext, useContext, useState, useEffect } from 'react'
 import { auth } from './firebase_config'
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth' 
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged } from 'firebase/auth' 
 
 
 function registerFunction(email, password) {
@@ -11,14 +11,22 @@ function loginFunction(email, password) {
     return signInWithEmailAndPassword(auth, email, password)
 }
 
+function logoutFunction() {
+    return signOut(auth)
+}
+
 const AuthenticationContext = createContext({})
 
 export const useAuthentication = () => useContext(AuthenticationContext)
 
 export default function AuthInjection({ children }) {
-    const [activeUser] = useState(null)
+    const [activeUser, setActiveUser] = useState(null)
 
-    const value = { activeUser, registerFunction, loginFunction }
+    useEffect(() => { const unsub = onAuthStateChanged(auth, user => { setActiveUser(user)})
+        return () => { unsub() }
+      }, [])
+
+    const value = { activeUser, registerFunction, loginFunction, logoutFunction }
 
     return <AuthenticationContext.Provider value={value}>
         {children}
