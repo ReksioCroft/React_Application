@@ -1,5 +1,6 @@
 import PageSchema from '../components/PageSchema'
 
+
 function MainPage() {
 
     return (

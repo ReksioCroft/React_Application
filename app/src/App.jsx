@@ -6,7 +6,7 @@ import AuthInjection from './firebase/AuthenticationContext'
 function App() {
   return (
       <AuthInjection>
-      <AppRoutes/>
+        <AppRoutes/>
       </AuthInjection>
   )
 }
