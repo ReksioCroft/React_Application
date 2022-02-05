@@ -4,11 +4,11 @@ import AuthInjection_StateManager from './firebase/AuthenticationContext'
 
 
 function App() {
-    return (
-        <AuthInjection_StateManager>
-            <AppRoutes/>
-        </AuthInjection_StateManager>
-    )
+  return (
+      <AuthInjection_StateManager>
+        <AppRoutes/>
+      </AuthInjection_StateManager>
+  )
 }
 
 export default App;

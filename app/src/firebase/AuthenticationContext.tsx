@@ -1,4 +1,4 @@
-import {createContext, useContext, useState, useEffect} from 'react'
+import React, {createContext, useContext, useState, useEffect, FC} from 'react'
 import {auth} from './firebase_config'
 import {createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged} from 'firebase/auth'
 import {Navigate, Outlet} from 'react-router-dom'
