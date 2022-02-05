@@ -18,7 +18,9 @@ function AppRoutes(){
             <BrowserRouter>
                 <Routes>
                     <Route path="/" element={<MainPage/>}/>
-                    <Route path="/home" element={<MainPage/>}/>
+                    <Route element={<NeedAuthentication/>}>
+                        <Route path="/home" element={<MainPage/>}/>
+                    </Route>
                     <Route path="/login" element={<LoginPage/>}/>
                     <Route path="/register" element={<RegisterPage/>}/>
                     <Route element={<NeedAuthentication/>}>

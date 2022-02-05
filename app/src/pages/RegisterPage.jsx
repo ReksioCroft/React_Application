@@ -1,8 +1,11 @@
 import PageSchema from '../components/PageSchema'
-import Link from '../components/Link'
 import { useAuthentication } from '../firebase/AuthenticationContext'
 import { useNavigate } from 'react-router-dom'
 import { useState } from 'react'
+
+import Box from '@mui/material/Box';
+import Typography from '@mui/material/Typography'
+import Button from '@mui/material/Button'
 
 
 
@@ -14,7 +17,12 @@ function RegisterPage() {
 
     return (
         <PageSchema>
-            <h1>Register Page</h1>
+            <Box mb={2}>                
+                        <Typography variant="h4" component="div" sx={{ flexGrow: 1 }}>
+                        Register Page
+                        </Typography>
+            </Box>
+
             <form onSubmit={ async e => {
             e.preventDefault()
             registerFunction(email, password)
@@ -24,16 +32,28 @@ function RegisterPage() {
                 alert(error.message)
             }) 
             }}>
-                <label htmlFor="email">Email</label>                   <br/>
+            <Box>                
+                        <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+                        <label htmlFor="email">Email</label>                   <br/>
+                        </Typography>
+            </Box>                
                 <input value={email} onChange={e => setEmail(e.target.value)} type="text" id="email" name="email" placeholder='tavic@gmail.com'/><br/>
-
-                <label htmlFor="password">Password</label>                    <br/>
+            
+            <Box>                
+                        <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+                            <label htmlFor="password">Password</label>                    <br/>
+                        </Typography>
+            </Box>                   
                 <input value={password} onChange={e => setPassword(e.target.value)} type="text" id="password" name="password"placeholder='1234567'/> <br/><br/>
 
-                <input type="submit" value="Submit"/>
+                <Button variant="contained" type="submit">Submit</Button>
             </form>
 
-            <Link to='/login' name='Login' />
+            
+            <p></p>
+            <Button variant="contained" href="/login" mt={2}>Login</Button>
+
+
         </PageSchema>
     )
 }

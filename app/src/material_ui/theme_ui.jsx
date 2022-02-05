@@ -8,7 +8,7 @@ export const theme_ui = createTheme({
         }
     },
     background: {
-        default: "#ff4"
+        default: "#ff43"
     }
 }
 )

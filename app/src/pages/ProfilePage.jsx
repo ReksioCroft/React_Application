@@ -1,10 +1,10 @@
 import { useAuthentication } from '../firebase/AuthenticationContext'
 import PageSchema from '../components/PageSchema'
 
-
 function ProfilePage() {
-    const { activeUser } = useAuthentication()
 
+    const { activeUser } = useAuthentication()
+    
     return (
          <PageSchema>
             <h1>Pagina de profil</h1>
