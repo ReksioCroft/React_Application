@@ -16,7 +16,7 @@ export default function AppBarPers() {
     return (
         <Box sx={{flexGrow: 1}}>
             <AppBar position="static">
-                <Toolbar colors="primary">
+                <Toolbar>
                     <Typography variant="h6" component="div" sx={{flexGrow: 1}}>
                         <Link to='/home' name='Home'/>
                     </Typography>

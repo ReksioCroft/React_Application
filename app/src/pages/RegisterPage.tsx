@@ -28,8 +28,8 @@ function RegisterPage() {
             <form onSubmit={async e => {
                 e.preventDefault()
                 registerFunction(email, password)
-                    .then((response) => sail('/profile'))
-                    .catch((error) => {
+                    .then(() => sail('/profile'))
+                    .catch((error: any) => {
                         console.log(error.message)
                         alert(error.message)
                     })
@@ -52,7 +52,7 @@ function RegisterPage() {
             </form>
 
             <br/>
-            <Button style={{borderRadius: 35, backgroundColor: "#21b6ae"}} variant="contained" href="/login" mt={2}>Login</Button>
+            <Button style={{borderRadius: 35, backgroundColor: "#21b6ae"}} variant="contained" href="/login">Login</Button>
 
 
         </PageSchema>

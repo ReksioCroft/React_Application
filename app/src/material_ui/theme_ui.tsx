@@ -2,13 +2,11 @@ import {createTheme} from '@mui/material/styles'
 
 
 export const theme_ui = createTheme({
-        pallete: {
+        palette: {
             primary: {
                 main: "#764abc"
             }
         },
-        background: {
-            default: "#ff43"
-        }
+
     }
 )

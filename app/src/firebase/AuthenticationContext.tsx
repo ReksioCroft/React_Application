@@ -1,14 +1,15 @@
-import React, {createContext, useContext, useState, useEffect, FC} from 'react'
+import React, {createContext, useContext, useState, useEffect} from 'react'
 import {auth} from './firebase_config'
 import {createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged} from 'firebase/auth'
 import {Navigate, Outlet} from 'react-router-dom'
+import {User} from 'firebase/auth'
 
 
-function registerFunction(email, password) {
+function registerFunction(email: string, password: string) {
     return createUserWithEmailAndPassword(auth, email, password)
 }
 
-function loginFunction(email, password) {
+function loginFunction(email: string, password: string) {
     return signInWithEmailAndPassword(auth, email, password)
 }
 
@@ -17,7 +18,19 @@ function logoutFunction() {
 }
 
 
-const AuthenticationContext = createContext({})
+const AuthenticationContext = createContext<{
+    activeUser: User | null,
+    registerFunction: any,
+    loginFunction: any,
+    logoutFunction: any,
+    NeedAuthentication: any
+}>({
+    "NeedAuthentication": NeedAuthentication,
+    "loginFunction": loginFunction,
+    "logoutFunction": logoutFunction,
+    "registerFunction": registerFunction,
+    "activeUser": null
+})
 
 export const useAuthentication = () => useContext(AuthenticationContext)
 
@@ -31,8 +44,8 @@ function NeedAuthentication() {
     return <Navigate to="/login"/>;
 }
 
-export default function AuthInjection_StateManager({children}) {
-    const [activeUser, setActiveUser] = useState(null)
+export default function AuthInjectionStateManager({children}: any) {
+    const [activeUser, setActiveUser] = useState<User | null>(null)
 
     useEffect(() => {
         const unsub = onAuthStateChanged(auth, user => {

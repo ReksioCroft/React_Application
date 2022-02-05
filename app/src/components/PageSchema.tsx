@@ -1,6 +1,6 @@
 import AppBarPers from '../material_ui/app_bar'
 
-function PageSchema(props) {
+function PageSchema(props: any) {
 
     return (
         <>

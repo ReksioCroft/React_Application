@@ -1,7 +1,7 @@
 import PageSchema from '../components/PageSchema'
 
 import {makeStyles} from '@mui/styles'
-import {Box} from '@mui/material'
+import {Box, Theme} from '@mui/material'
 import {Container, Grid} from '@mui/material'
 
 
@@ -15,7 +15,7 @@ import {Avatar} from '@mui/material';
 import Typography from '@mui/material/Typography';
 
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles((theme: Theme) => ({
     princ: {
         backgroundImage: "linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://images.unsplash.com/photo-1498050108023-c5249f4df085?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8d2VifGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=1000&q=60')",
         height: "500px",

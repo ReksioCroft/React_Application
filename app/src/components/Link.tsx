@@ -1,7 +1,7 @@
 import {NavLink} from 'react-router-dom'
 import '../css/link.css'
 
-function Link({to, name, ...rest}) {
+function Link({to, name}: { to: string, name: string }) {
     return (
         <NavLink to={to}>
             {name}
@@ -11,3 +11,4 @@ function Link({to, name, ...rest}) {
 
 
 export default Link
+

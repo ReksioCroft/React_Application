@@ -2,8 +2,6 @@ import PageSchema from '../components/PageSchema'
 import {useAuthentication} from '../firebase/AuthenticationContext'
 import {useNavigate} from 'react-router-dom'
 import {useState} from 'react'
-
-
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography'
 import Button from '@mui/material/Button'
@@ -30,8 +28,8 @@ function LoginPage() {
             <form onSubmit={async e => {
                 e.preventDefault()
                 loginFunction(email, password)
-                    .then((response) => sail('/profile'))
-                    .catch((error) => {
+                    .then(() => sail('/profile'))
+                    .catch((error: any) => {
                         console.log(error.message)
                         alert(error.message)
                     })
@@ -56,7 +54,7 @@ function LoginPage() {
             </form>
 
             <br/>
-            <Button style={{borderRadius: 35, backgroundColor: "#21b6ae"}} variant="contained" href="/register" mt={2}>Register</Button>
+            <Button style={{borderRadius: 35, backgroundColor: "#21b6ae"}} variant="contained" href="/register">Register</Button>
 
         </PageSchema>
 

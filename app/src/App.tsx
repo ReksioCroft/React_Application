@@ -1,14 +1,14 @@
 import React from 'react'
 import AppRoutes from './components/AppRoutes'
-import AuthInjection_StateManager from './firebase/AuthenticationContext'
+import AuthInjectionStateManager from './firebase/AuthenticationContext'
 
 
 function App() {
-  return (
-      <AuthInjection_StateManager>
-        <AppRoutes/>
-      </AuthInjection_StateManager>
-  )
+    return (
+        <AuthInjectionStateManager>
+            <AppRoutes/>
+        </AuthInjectionStateManager>
+    )
 }
 
 export default App;
