@@ -4,7 +4,7 @@ function PageSchema(props) {
 
     return (
         <>
-            <AppBarPers/>             
+            <AppBarPers/>
             {props.children}
         </>
     )

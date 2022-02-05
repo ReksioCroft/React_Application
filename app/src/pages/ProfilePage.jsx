@@ -1,15 +1,15 @@
-import { useAuthentication } from '../firebase/AuthenticationContext'
+import {useAuthentication} from '../firebase/AuthenticationContext'
 import PageSchema from '../components/PageSchema'
 
 function ProfilePage() {
 
-    const { activeUser } = useAuthentication()
-    
+    const {activeUser} = useAuthentication()
+
     return (
-         <PageSchema>
+        <PageSchema>
             <h1>Pagina de profil</h1>
-            <p>Informatii: { JSON.stringify(activeUser, null, 2)}</p>
-         </PageSchema>
+            <pre>Informatii: {JSON.stringify(activeUser, null, 2)}</pre>
+        </PageSchema>
     )
 }
 
