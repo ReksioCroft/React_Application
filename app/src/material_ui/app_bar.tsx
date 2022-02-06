@@ -20,8 +20,11 @@ export default function AppBarPers() {
                     <Typography variant="h6" component="div" sx={{flexGrow: 1}}>
                         <Link to='/home' name='Home'/>
                     </Typography>
-                    <Typography variant="h6" component="div" sx={{flexGrow: 20}}>
+                    <Typography variant="h6" component="div" sx={{flexGrow: 1}}>
                         {activeUser && <Link to='/profile' name='Profile'/>}
+                    </Typography>
+                    <Typography variant="h6" component="div" sx={{flexGrow: 20}}>
+                        {activeUser && <Link to='/post_article' name='Post Article'/>}
                     </Typography>
                     <Typography variant="h6" component="div" sx={{flexGrow: 1}}>
                         {!activeUser && <Link to='/login' name='Login'/>}

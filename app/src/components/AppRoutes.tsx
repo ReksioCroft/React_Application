@@ -7,6 +7,7 @@ import RegisterPage from '../pages/RegisterPage'
 import NotFoundPage from '../pages/NotFoundPage'
 import ProfilePage from '../pages/ProfilePage'
 import {useAuthentication} from '../firebase/AuthenticationContext'
+import CreateArticlePage from "../pages/CreateArticlePage";
 
 
 function AppRoutes() {
@@ -27,6 +28,9 @@ function AppRoutes() {
                     </Route>
                     <Route element={<NeedAuthentication/>}>
                         <Route path="/profile" element={<ProfilePage/>}/>
+                    </Route>
+                    <Route element={<NeedAuthentication/>}>
+                        <Route path="/post_article" element={<CreateArticlePage/>}/>
                     </Route>
                     <Route path="*" element={<NotFoundPage/>}/>
                 </Routes>

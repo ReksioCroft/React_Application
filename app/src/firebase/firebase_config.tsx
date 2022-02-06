@@ -1,6 +1,7 @@
 // Import the functions you need from the SDKs you need
 import {initializeApp} from "firebase/app";
 import {getAuth} from 'firebase/auth'
+import {getDatabase} from "firebase/database";
 // https://firebase.google.com/docs/web/setup#available-libraries
 
 // Your web app's Firebase configuration
@@ -8,6 +9,7 @@ import {getAuth} from 'firebase/auth'
 const firebaseConfig = {
     apiKey: "AIzaSyDXlVBp6s0FWF-PP5_D9LuHrPECNxl0aZA",
     authDomain: "react-fmi.firebaseapp.com",
+    databaseURL: "https://react-fmi-default-rtdb.europe-west1.firebasedatabase.app",
     projectId: "react-fmi",
     storageBucket: "react-fmi.appspot.com",
     messagingSenderId: "715645029696",
@@ -16,6 +18,7 @@ const firebaseConfig = {
 };
 
 // Initialize Firebase
-const app = initializeApp(firebaseConfig);
+const firebaseApp = initializeApp(firebaseConfig);
 
-export const auth = getAuth(app)
+export const auth = getAuth(firebaseApp)
+export const realtime_db = getDatabase(firebaseApp)
