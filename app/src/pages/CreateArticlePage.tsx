@@ -22,7 +22,7 @@ function CreateArticlePage(): JSX.Element {
 
                 <Box mb={2}>
                     <Typography variant="h4" component="div" sx={{flexGrow: 1}}>
-                        Login Page
+                        Create New Article
                     </Typography>
                 </Box>
 
