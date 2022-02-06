@@ -10,8 +10,8 @@ import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import {Avatar} from '@mui/material';
-import {GetArticles} from "../firebase/firebase_db"
 import Typography from '@mui/material/Typography';
+import {useAuthentication} from "../firebase/AuthenticationContext";
 
 
 const useStyles = makeStyles((theme: Theme) => ({
@@ -50,7 +50,12 @@ const useStyles = makeStyles((theme: Theme) => ({
 function MainPage() {
 
     const my_classes = useStyles()
-    GetArticles();
+    let {activeUser} = useAuthentication();
+    let articles = {}
+    if (activeUser) {
+        // articles = GetArticles();
+
+    }
     return (
         <PageSchema>
             <Box className={my_classes.princ}>

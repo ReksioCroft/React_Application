@@ -40,7 +40,7 @@ function LoginPage() {
                         <label htmlFor="email">Email</label> <br/>
                     </Typography>
                 </Box>
-                <input value={email} onChange={e => setEmail(e.target.value)} type="text" id="email" name="email" placeholder="tavic@gmail.com"/><br/>
+                <input value={email} onChange={e => setEmail(e.target.value)} type="email" id="email" name="email" placeholder="tavic@gmail.com"/><br/>
 
 
                 <Box>
@@ -48,7 +48,7 @@ function LoginPage() {
                         <label htmlFor="password">Password</label> <br/>
                     </Typography>
                 </Box>
-                <input value={password} onChange={e => setPassword(e.target.value)} type="text" id="password" name="password" placeholder="1234567"/> <br/><br/>
+                <input value={password} onChange={e => setPassword(e.target.value)} type="password" id="password" name="password" placeholder="1234567"/> <br/><br/>
 
                 <Button style={{borderRadius: 35}} variant="contained" type="submit">Submit</Button>
             </form>

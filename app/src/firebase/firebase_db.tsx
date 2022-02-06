@@ -1,23 +1,37 @@
 import {firebaseApp} from "./firebase_config";
-import {getDatabase, ref, set, get, child} from "firebase/database"
-import {useEffect} from "react";
+import {getDatabase, ref, set, get, child, push, ThenableReference} from "firebase/database"
+import {useAuthentication} from "./AuthenticationContext";
 
 const realtime_db = getDatabase(firebaseApp)
 
 
-export async function GetArticles() {
-    // await realtime_db.ref(`foo/bar`).once('value');
-
+export function GetArticles(): any {
+    let {activeUser} = useAuthentication();
+    let articles = {};
+    // useEffect(() => {
+    if (activeUser) {
         const dbRef = ref(realtime_db);
-        alert(dbRef)
-        get(child(dbRef, "/ceva")).then((snapshot) => {
+        get(child(dbRef, "/articles")).then((snapshot) => {
             if (snapshot.exists()) {
-                alert(snapshot.val());
-            } else {
-                alert("No data available");
+                articles = snapshot.val()
             }
+            // else {
+            //     alert("No data available");
+            // }
         }).catch((error) => {
-            alert(error);
-        });
+            console.error(error);
+        })
+    }
+    // });
+    return articles;
+}
 
+export function PushArticle(article: JSON): ThenableReference {
+    const dbRef = ref(realtime_db);
+    let {activeUser} = useAuthentication();
+
+    if (activeUser) {
+        return push(child(child(dbRef, 'users'), activeUser.uid), article)
+    } else
+        throw new Error("User is not authenticated")
 }
