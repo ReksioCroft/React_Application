@@ -46,7 +46,8 @@ function RegisterPage() {
                         <label htmlFor="password">Password</label> <br/>
                     </Typography>
                 </Box>
-                <input value={password} onChange={e => setPassword(e.target.value)} type="password" id="password" name="password" placeholder='1234567'/> <br/><br/>
+                <input value={password} onChange={e => setPassword(e.target.value)} type="password" id="password" name="password" placeholder='1234567'/>
+                <br/><br/>
 
                 <Button style={{borderRadius: 35}} variant="contained" type="submit">Submit</Button>
             </form>

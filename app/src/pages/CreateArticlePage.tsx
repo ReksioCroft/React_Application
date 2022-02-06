@@ -5,8 +5,6 @@ import {useState} from 'react'
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography'
 import Button from '@mui/material/Button'
-import {PushArticle} from "../firebase/firebase_db";
-
 
 function CreateArticlePage(): JSX.Element {
     const [title, setTitle] = useState('')
@@ -14,7 +12,7 @@ function CreateArticlePage(): JSX.Element {
     const [image, setImage] = useState('')
     const [avatar, setAvatar] = useState('')
     const sail = useNavigate()
-    let {activeUser} = useAuthentication();
+    let {activeUser, pushArticle} = useAuthentication();
 
     if (activeUser) {
         return (
@@ -38,8 +36,9 @@ function CreateArticlePage(): JSX.Element {
                         article["content"] = content
                         article["avatar"] = avatar
                         article["author"] = activeUser.email
-                        article["date"] = "Feb 5, 2022"
-                        PushArticle(article).then(() => sail('/home'))
+                        var today = new Date()
+                        article["date"] = today.toLocaleString('default', {year: "numeric", month: 'long', day: "2-digit"})
+                        pushArticle(activeUser, article).then(() => sail('/home'))
                             .catch((error: any) => {
                                 console.log(error.message)
                                 alert(error.message)
@@ -74,7 +73,7 @@ function CreateArticlePage(): JSX.Element {
                             <label htmlFor="avatar">Avatar Image</label> <br/>
                         </Typography>
                     </Box>
-                    <input value={image} onChange={e => setAvatar(e.target.value)} type="url" id="image" name="image" placeholder="link"/> <br/><br/>
+                    <input value={avatar} onChange={e => setAvatar(e.target.value)} type="url" id="avatar" name="avatar" placeholder="link"/> <br/><br/>
 
 
                     <Button style={{borderRadius: 35}} variant="contained" type="submit">Submit</Button>
