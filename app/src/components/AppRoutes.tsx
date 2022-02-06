@@ -11,7 +11,7 @@ import {useAuthentication} from '../firebase/AuthenticationContext'
 
 function AppRoutes() {
 
-    const {NeedAuthentication} = useAuthentication()
+    const {NeedAuthentication, AccessProfileIfAuthenticated} = useAuthentication()
 
     return (
         <>
@@ -19,8 +19,12 @@ function AppRoutes() {
                 <Routes>
                     <Route path="/" element={<MainPage/>}/>
                     <Route path="/home" element={<MainPage/>}/>
-                    <Route path="/login" element={<LoginPage/>}/>
-                    <Route path="/register" element={<RegisterPage/>}/>
+                    <Route element={<AccessProfileIfAuthenticated/>}>
+                        <Route path="/login" element={<LoginPage/>}/>
+                    </Route>
+                    <Route element={<AccessProfileIfAuthenticated/>}>
+                        <Route path="/register" element={<RegisterPage/>}/>
+                    </Route>
                     <Route element={<NeedAuthentication/>}>
                         <Route path="/profile" element={<ProfilePage/>}/>
                     </Route>
@@ -30,6 +34,5 @@ function AppRoutes() {
         </>
     )
 }
-
 
 export default AppRoutes
