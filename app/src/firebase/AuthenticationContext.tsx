@@ -1,19 +1,17 @@
-import React, {createContext, useContext, useState, useEffect} from 'react'
+import React, {createContext, useContext, useState, useEffect, ReactElement} from 'react'
 import {auth} from './firebase_config'
-import {createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged} from 'firebase/auth'
+import {createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged, User, UserCredential} from 'firebase/auth'
 import {Navigate, Outlet} from 'react-router-dom'
-import {User} from 'firebase/auth'
 
-
-function registerFunction(email: string, password: string) {
+function registerFunction(email: string, password: string): Promise<UserCredential> {
     return createUserWithEmailAndPassword(auth, email, password)
 }
 
-function loginFunction(email: string, password: string) {
+function loginFunction(email: string, password: string): Promise<UserCredential> {
     return signInWithEmailAndPassword(auth, email, password)
 }
 
-function logoutFunction() {
+function logoutFunction(): Promise<void> {
     return signOut(auth)
 }
 
@@ -23,18 +21,30 @@ const AuthenticationContext = createContext<{
     registerFunction: any,
     loginFunction: any,
     logoutFunction: any,
-    NeedAuthentication: any
+    NeedAuthentication: any,
+    AccessProfileIfAuthenticated: any,
 }>({
     "NeedAuthentication": NeedAuthentication,
+    "AccessProfileIfAuthenticated": AccessProfileIfAuthenticated,
+    "registerFunction": registerFunction,
     "loginFunction": loginFunction,
     "logoutFunction": logoutFunction,
-    "registerFunction": registerFunction,
     "activeUser": null
 })
 
 export const useAuthentication = () => useContext(AuthenticationContext)
 
-function NeedAuthentication() {
+function AccessProfileIfAuthenticated(): ReactElement {
+    let {activeUser} = useAuthentication();
+
+    if (activeUser) {
+        return <Navigate to="/profile"/>;
+    }
+
+    return <Outlet/>;
+}
+
+function NeedAuthentication(): ReactElement {
     let {activeUser} = useAuthentication();
 
     if (activeUser) {
@@ -44,7 +54,7 @@ function NeedAuthentication() {
     return <Navigate to="/login"/>;
 }
 
-export default function AuthInjectionStateManager({children}: any) {
+export default function AuthInjectionStateManager({children}: any): ReactElement {
     const [activeUser, setActiveUser] = useState<User | null>(null)
 
     useEffect(() => {
@@ -56,7 +66,7 @@ export default function AuthInjectionStateManager({children}: any) {
         }
     }, [])
 
-    const value = {activeUser, registerFunction, loginFunction, logoutFunction, NeedAuthentication}
+    const value = {activeUser, registerFunction, loginFunction, logoutFunction, NeedAuthentication, AccessProfileIfAuthenticated}
 
 
     return <AuthenticationContext.Provider value={value}>
