@@ -10,8 +10,7 @@ import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import {Avatar} from '@mui/material';
-
-
+import {GetArticles} from "../firebase/firebase_db"
 import Typography from '@mui/material/Typography';
 
 
@@ -51,7 +50,7 @@ const useStyles = makeStyles((theme: Theme) => ({
 function MainPage() {
 
     const my_classes = useStyles()
-
+    GetArticles();
     return (
         <PageSchema>
             <Box className={my_classes.princ}>
